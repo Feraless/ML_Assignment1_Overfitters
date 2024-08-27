@@ -1,0 +1,55 @@
+digraph {
+	node_3102537579632 [label="3 < 1.6666666666666667"]
+	node_3102537908576 [label="0_0 < 0.07692307692307693"]
+	node_3102537579632 -> node_3102537908576
+	node_3102537913184 [label="1_4 < 0.08333333333333333"]
+	node_3102537908576 -> node_3102537913184
+	node_3102537913808 [label="4_1 < 0.09090909090909091"]
+	node_3102537913184 -> node_3102537913808
+	node_3102537919808 [label="1_2 < 0.1"]
+	node_3102537913808 -> node_3102537919808
+	leaf_3102537913232 [label=0 color=lightgrey shape=box style=filled]
+	node_3102537919808 -> leaf_3102537913232
+	leaf_3102537909920 [label=2 color=lightgrey shape=box style=filled]
+	node_3102537919808 -> leaf_3102537909920
+	leaf_3102537922544 [label=4 color=lightgrey shape=box style=filled]
+	node_3102537913808 -> leaf_3102537922544
+	leaf_3102537920528 [label=4 color=lightgrey shape=box style=filled]
+	node_3102537913184 -> leaf_3102537920528
+	leaf_3102537915440 [label=3 color=lightgrey shape=box style=filled]
+	node_3102537908576 -> leaf_3102537915440
+	node_3102537579728 [label="3 < 2.6470588235294117"]
+	node_3102537579632 -> node_3102537579728
+	node_3102537577040 [label="0_3 < 0.3"]
+	node_3102537579728 -> node_3102537577040
+	node_3102537572768 [label="0_0 < 0.2857142857142857"]
+	node_3102537577040 -> node_3102537572768
+	leaf_3102537921488 [label=0 color=lightgrey shape=box style=filled]
+	node_3102537572768 -> leaf_3102537921488
+	node_3102537579872 [label="1_1 < 0.5"]
+	node_3102537572768 -> node_3102537579872
+	leaf_3102537580160 [label=3 color=lightgrey shape=box style=filled]
+	node_3102537579872 -> leaf_3102537580160
+	leaf_3102537577856 [label=0 color=lightgrey shape=box style=filled]
+	node_3102537579872 -> leaf_3102537577856
+	node_3102537576176 [label="1_2 < 0.3333333333333333"]
+	node_3102537577040 -> node_3102537576176
+	leaf_3102537579824 [label=3 color=lightgrey shape=box style=filled]
+	node_3102537576176 -> leaf_3102537579824
+	leaf_3102537574784 [label=0 color=lightgrey shape=box style=filled]
+	node_3102537576176 -> leaf_3102537574784
+	node_3102537914144 [label="3 < 3.5714285714285716"]
+	node_3102537579728 -> node_3102537914144
+	node_3102537577280 [label="2_4 < 0.3333333333333333"]
+	node_3102537914144 -> node_3102537577280
+	leaf_3102537576992 [label=2 color=lightgrey shape=box style=filled]
+	node_3102537577280 -> leaf_3102537576992
+	leaf_3102537573824 [label=4 color=lightgrey shape=box style=filled]
+	node_3102537577280 -> leaf_3102537573824
+	node_3102537922304 [label="1_2 < 0.25"]
+	node_3102537914144 -> node_3102537922304
+	leaf_3102537912272 [label=1 color=lightgrey shape=box style=filled]
+	node_3102537922304 -> leaf_3102537912272
+	leaf_3102537917360 [label=3 color=lightgrey shape=box style=filled]
+	node_3102537922304 -> leaf_3102537917360
+}

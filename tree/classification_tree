@@ -1,0 +1,21 @@
+digraph {
+	root [label="Feature1 < 3.25"]
+	root_left [label=Left]
+	root_right [label=Right]
+	root -> root_left
+	root -> root_right
+	root_left [label="Feature1 < 1.75"]
+	root_left_left [label=Left]
+	root_left_right [label=Right]
+	root_left -> root_left_left
+	root_left -> root_left_right
+	root_left_left [label=0 color=lightgrey shape=box style=filled]
+	root_left_right [label="Feature1 < 2.25"]
+	root_left_right_left [label=Left]
+	root_left_right_right [label=Right]
+	root_left_right -> root_left_right_left
+	root_left_right -> root_left_right_right
+	root_left_right_left [label=1 color=lightgrey shape=box style=filled]
+	root_left_right_right [label=0 color=lightgrey shape=box style=filled]
+	root_right [label=1 color=lightgrey shape=box style=filled]
+}
