@@ -18,7 +18,6 @@ import graphviz
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore", category=pd.errors.SettingWithCopyWarning)
-from sklearn.preprocessing import OneHotEncoder
 np.random.seed(42)
 
 
