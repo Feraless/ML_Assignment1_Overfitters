@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from tree.base import DecisionTree
-from metrics.py import mae,mse,accuracy,precision,recall
+from metrics.py import mae,rmse,accuracy,precision,recall
 from sklearn.datasets import make_classification
 
 np.random.seed(42)
