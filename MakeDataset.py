@@ -21,7 +21,7 @@ folders = ["LAYING","SITTING","STANDING","WALKING","WALKING_DOWNSTAIRS","WALKING
 classes = {"WALKING":1,"WALKING_UPSTAIRS":2,"WALKING_DOWNSTAIRS":3,"SITTING":4,"STANDING":5,"LAYING":6}
 
 # combined_dir = os.path.join("Combined")
-combined_dir= '/Users/tanishqchaudhari/Desktop/Cloned Git Repos/ML_Assignment_1/human+activity+recognition+using+smartphones/UCI HAR Dataset/Combined'
+combined_dir= '/Users/tanishqchaudhari/Desktop/Cloned Git Repos/ML_Assignment1_Overfitters/Combined'
 
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
                                                 # Train Dataset
