@@ -1,6 +1,6 @@
-Collected Data folder contains bin files fron the physics toolkit app at 600 Hz. <br>
-Bin files were converted to csv files and then the data was trimmed and downsampled to get 10 seconds data at 50Hz. <br>
-bintocsv.py was used to convert bin files to csv. <br>
-data_processing.ipynb was used for trimming and downsampling. <br>
-Make_collected_dataset.py is used to load the data as numpy arrays. <br>
+Collected Data folder contains bin files fron the physics toolkit app at 600 Hz. 
+Bin files were converted to csv files and then the data was trimmed and downsampled to get 10 seconds data at 50Hz. 
+bintocsv.py was used to convert bin files to csv. 
+data_processing.ipynb was used for trimming and downsampling. 
+Make_collected_dataset.py is used to load the data as numpy arrays. 
 TSFEL_collected_data.ipynb was used to apply tsfel features to the collected data and then X_collected_tsfel.csv and Y_collected_tsfel.csv were obtained.
