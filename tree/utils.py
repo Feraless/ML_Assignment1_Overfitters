@@ -77,6 +77,7 @@ def information_gain(Y: pd.Series, attr: pd.Series, criterion: str) -> float:
             weighted_gini += (len(subset) / len(Y)) * gini_index(subset)
         return initial - weighted_gini
 
+
     elif criterion == "mse":
         initial = np.mean((Y - np.mean(Y)) ** 2)
         weighted_mse = 0.0
@@ -97,28 +98,32 @@ def opt_split_attribute(X: pd.DataFrame, y: pd.Series, features,criterion = None
 
     best_gain = -float('inf')
     best_attr = None
+    best_split_value = None
 
     for attr in features:
         gain = 0.0
         if check_ifreal(X[attr]):
-            thresholds = X[attr].unique()
-            for threshold in thresholds:
-                left = X[attr] <= threshold
-                right = X[attr] > threshold
-                if np.any(left) and np.any(right): # To check if left and right have atleast one True value
-                    left_y = y[left]
-                    right_y = y[right]
-                    gain = information_gain(y, X[attr], criterion)
+            if check_ifreal(y):
+                a, b, c, d, e, min_impurity = split_data(X, y,attr)
+                gain = mean_squared_error(y,[y.mean()]*len(y)) - min_impurity
+            else:
+                a, b, c, d, e, min_impurity = split_data(X, y,attr)
+                if criterion == "entropy":
+                    gain = entropy(y) - min_impurity
+                elif criterion == "gini_index":
+                    gain = gini_index(y) - min_impurity
+            if gain > best_gain:
+                best_gain = gain
+                best_attr = attr
         else:
-            gain = information_gain(y, X[attr], criterion)
-
-        if gain > best_gain:
-            best_gain = gain
-            best_attr = attr
-
+            if check_ifreal(y):
+                gain = information_gain(y, X[attr], "mse")
+            else:
+                gain = information_gain(y, X[attr], criterion=criterion)
+            if gain > best_gain:
+                best_gain = gain
+                best_attr = attr
     return best_attr
-
-
 def split_data(X: pd.DataFrame, y: pd.Series, attribute, value = None):
     """
     Funtion to split the data according to an attribute.
@@ -132,13 +137,10 @@ def split_data(X: pd.DataFrame, y: pd.Series, attribute, value = None):
     """
     if not check_ifreal(X[attribute]):
         opt_value = None
-        # print(X.columns)
-        # print(attribute)
-        # print(X[attribute])
         X[attribute] = X[attribute].astype(int)
         left = X[attribute] <= value
         right = X[attribute] > value
-
+        min_impurity = None
         X_left = X[left]
         X_right = X[right]
         y_left = y[left]
@@ -196,4 +198,4 @@ def split_data(X: pd.DataFrame, y: pd.Series, attribute, value = None):
         y_left = y[left]
         y_right = y[right]
 
-    return X_left, y_left, X_right, y_right, opt_value
+    return X_left, y_left, X_right, y_right, opt_value,min_impurity

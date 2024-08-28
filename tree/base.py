@@ -18,7 +18,7 @@ import graphviz
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore", category=pd.errors.SettingWithCopyWarning)
-
+from sklearn.preprocessing import OneHotEncoder
 np.random.seed(42)
 
 
@@ -48,30 +48,35 @@ class DecisionTree:
 
     def fit(self, X: pd.DataFrame, y: pd.Series,  criterion: str, depth=0, counter=0) -> dict[str, Any] | Any:
 
-        if counter == 1:
+        if counter == 0:
             X = one_hot_encoding(X)
+
+        if y.empty:
+            return Node(value=None)
 
         if len(set(y)) == 1:
             return Node(value=y.iloc[0])
 
         if depth >= self.max_depth:
-            return Node(value=y.mode()[0])
+            mode_value = y.mode()
+            return Node(value=mode_value[0])
 
         if len(X.columns) == 0:
-            return Node(value=y.mode()[0])
+            mode_value = y.mode()
+            return Node(value=mode_value[0])
 
         attr = opt_split_attribute(X, y, X.columns, self.criterion)
 
         if attr is None:
-            # print(y)
-            return Node(value=y.mode())
+            mode_value = y.mode()
+            return Node(value=mode_value[0])
 
         if not check_ifreal(X[attr]):
             X_attr = X[attr].astype(int)
             threshold = X_attr.mean()
-            X_left, y_left, X_right, y_right,_ = split_data(X, y, attr, threshold)
+            X_left, y_left, X_right, y_right,_,nul = split_data(X, y, attr, threshold)
         else:
-            X_left, y_left, X_right, y_right,threshold = split_data(X, y, attr)
+            X_left, y_left, X_right, y_right,threshold,_ = split_data(X, y, attr)
 
         left_subtree = self.fit(X_left, y_left, criterion=criterion, depth=depth + 1, counter=counter + 1)
         right_subtree = self.fit(X_right, y_right, criterion=criterion, depth=depth + 1, counter=counter + 1)
@@ -83,7 +88,7 @@ class DecisionTree:
         """
         Function to run the decision tree on test inputs
         """
-        X = one_hot_encoding(X)  # Ensure the input data is in the correct format
+        X = one_hot_encoding(X)
         return X.apply(self.predict_single,node = node,axis=1)
 
     def plot(self,node) -> None:
@@ -100,7 +105,7 @@ class DecisionTree:
         """
 
         def add_edges(node, graph, parent_name=None):
-            if node is None:
+            if node is None or (node.attribute is None and node.threshold is None):
                 return
 
             if node.value is not None:
@@ -136,19 +141,3 @@ class DecisionTree:
         else:
             return self.predict_single(x, node.right)
 
-# np.random.seed(42)
-
-# N = 30
-# P = 5
-# X = pd.DataFrame({i: pd.Series(np.random.randint(P, size=N), dtype="category") for i in range(5)})
-# y = pd.Series(np.random.randint(P, size=N), dtype="category")
-#
-# for criteria in ["entropy", "gini_index"]:
-#     tree = DecisionTree(criterion=criteria)  # Split based on Inf. Gain
-#     node =tree.fit(X, y,criterion=criteria)
-#     y_hat = tree.predict(X,node)
-#     tree.plot(node)
-#     print("Criteria :", criteria)
-#     print("Accuracy: ", accuracy_score(y_hat, y))
-#     print("Precision: ", precision_score(y_hat, y,average="weighted"))
-#     # print("Recall: ", recall(y_hat, y,average="weighted"))
