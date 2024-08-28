@@ -3,7 +3,7 @@ import numpy as np
 import time
 import matplotlib.pyplot as plt
 from tree.base import DecisionTree
-from metrics import *
+from metrics.py import mae,rmse,accuracy,precision,recall
 from sklearn.model_selection import train_test_split
 
 np.random.seed(42)
